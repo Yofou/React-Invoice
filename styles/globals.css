@@ -11,3 +11,13 @@ html, body, #__next {
 * {
 	@apply font-spartan font-medium;
 }
+
+#__next {
+	@apply grid grid-rows-[80px,1fr] grid-cols-1;
+}
+
+@screen md {
+	#__next {
+		@apply grid-cols-[103px,1fr] grid-rows-1;
+	}
+}
