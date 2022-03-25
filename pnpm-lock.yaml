@@ -10,6 +10,7 @@ specifiers:
   next: 12.1.0
   postcss: ^8.4.12
   react: 17.0.2
+  react-detect-click-outside: ^1.1.2
   react-dom: 17.0.2
   react-redux: ^7.2.6
   tailwindcss: ^3.0.23
@@ -19,6 +20,7 @@ dependencies:
   '@reduxjs/toolkit': 1.8.0_react-redux@7.2.6+react@17.0.2
   next: 12.1.0_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
+  react-detect-click-outside: 1.1.2_react-dom@17.0.2+react@17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
 
@@ -1807,6 +1809,16 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
     dev: true
+
+  /react-detect-click-outside/1.1.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-BYavS0DoZ7JzTgCDQiYnh3F8jWr6FONBNWLzpFICbupW3rE4IgPOzeqPn4zO0s1C10kXF8X8xiHe0C+mYSJz5g==}
+    peerDependencies:
+      react: ^16.8.0 || ^17
+      react-dom: ^16.8.0 || ^17
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
 
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
