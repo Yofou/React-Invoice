@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { useState } from "react"
 import { useDetectClickOutside } from "react-detect-click-outside"
 
@@ -12,7 +13,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({ children }) => {
 	return <div className="relative col-start-2 col-end-3 row-start-1 row-end-3 justify-self-end self-center" ref={ref}>
 		<button onClick={() => setIsOpen(!isOpen)} className="flex gap-4 items-center text-h4 text-white-full text-left">
 			Filter by status
-			<img className={`transition-transform transform ${isOpen ? "-rotate-180" : ""}`} src="/icon-arrow-down.svg" alt="" />
+			<Image className={`transition-transform transform ${isOpen ? "-rotate-180" : ""}`} src="/icon-arrow-down.svg" alt="" layout="fixed" width="11px" height="7px" />
 		</button>
 
 		{isOpen && (

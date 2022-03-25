@@ -1,5 +1,6 @@
 import Button from "@components/top-level/button"
 import { InvoiceStatus } from "@lib/stores/filter-by-status"
+import Image from "next/image"
 import CheckButton from "./check-button"
 import FilterButton from "./filter-button"
 
@@ -15,7 +16,7 @@ const Controls: React.FC = () => {
 
 		<Button className="bg-purple-600 text-white-full text-h4 col-start-3 col-end-4 row-start-1 self-center row-end-3 !p-2 !pr-[15px] flex items-center gap-4">
 			<div className="bg-white-full w-8 h-8 rounded-full grid place-content-center">
-				<img className="transform translate-x-[1px]" src="/icon-plus.svg" />
+				<Image className="transform translate-x-[1px]" src="/icon-plus.svg" alt="" layout="fixed" width="11px" height="11px" />
 			</div>
 			New Invoice
 		</Button>
