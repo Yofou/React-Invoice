@@ -1,16 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export enum InvoiceStatus {
-	DRAFT,
-	PENDING,
-	PAID
-}
+import { PaymentStatus } from "./invoices-types";
 
 export const filterByStatus = createSlice({
 	name: "filterByStatus",
-	initialState: [] as InvoiceStatus[],
+	initialState: [] as PaymentStatus[],
 	reducers: {
-		addOrRemoveFilter: (state, action: PayloadAction<InvoiceStatus>) => {
+		addOrRemoveFilter: (state, action: PayloadAction<PaymentStatus>) => {
 			if ( state.includes( action.payload ) ) {
 				state = state.filter( item => item !== action.payload )
 			} else {

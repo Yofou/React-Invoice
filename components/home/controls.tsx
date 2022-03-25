@@ -1,5 +1,5 @@
 import Button from "@components/top-level/button"
-import { InvoiceStatus } from "@lib/stores/filter-by-status"
+import { PaymentStatus } from "@lib/stores/invoices-types"
 import Image from "next/image"
 import CheckButton from "./check-button"
 import FilterButton from "./filter-button"
@@ -9,9 +9,9 @@ const Controls: React.FC = () => {
 		<h1 className="text-h1 text-white-full col-start-1 col-end-2">Invoices</h1>
 		<p className="text-body-2 text-grey-300 col-start-1 col-end-2">No Invoices</p>
 		<FilterButton>
-			<CheckButton invoiceStatus={InvoiceStatus.DRAFT}>Draft</CheckButton>
-			<CheckButton invoiceStatus={InvoiceStatus.PENDING}>Pending</CheckButton>
-			<CheckButton invoiceStatus={InvoiceStatus.PAID}>Paid</CheckButton>
+			<CheckButton invoiceStatus={PaymentStatus.Draft}>Draft</CheckButton>
+			<CheckButton invoiceStatus={PaymentStatus.Pending}>Pending</CheckButton>
+			<CheckButton invoiceStatus={PaymentStatus.Paid}>Paid</CheckButton>
 		</FilterButton>
 
 		<Button className="bg-purple-600 text-white-full text-h4 col-start-3 col-end-4 row-start-1 self-center row-end-3 !p-2 !pr-[15px] flex items-center gap-4">

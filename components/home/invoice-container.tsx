@@ -4,7 +4,10 @@ import { useSelector } from "react-redux"
 import InvoiceItem from "./invoice-item"
 
 const InvoiceContainer: React.FC = () => {
-	const invoices = useSelector( (state: RootState) => state.invoices )
+	const { invoices, filterByStatus } = useSelector( (state: RootState) => state )
+	const filterInvoices = filterByStatus.length === 0 ? invoices : invoices.filter( invoice => {
+		return filterByStatus.includes( invoice.paymentStatus )
+	})
 
 	if (invoices.length === 0) return <section className="flex flex-col items-center gap-6">
 		<div className="mb-10">
@@ -18,7 +21,7 @@ const InvoiceContainer: React.FC = () => {
 	</section>
 
 	return <ul className="w-full flex flex-col gap-4">
-		{invoices.map(invoice => (
+		{filterInvoices.map(invoice => (
 			<InvoiceItem invoice={invoice} key={invoice.id} />
 		))}
 	</ul>

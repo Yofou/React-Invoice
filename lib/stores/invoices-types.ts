@@ -5,6 +5,12 @@ interface BillInfo {
 	country: string
 }
 
+export enum PaymentStatus {
+	Draft="Draft",
+	Pending="Pending",
+	Paid="Paid",
+}
+
 export enum PaymentTerms {
 	OneDay = 1,
 	SevenDays = 7,
@@ -24,6 +30,7 @@ export interface Invoice {
 	billTo: BillInfo & { name: string, email: string }
 	invoiceData: Date,
 	paymentTerms: PaymentTerms,
+	paymentStatus: PaymentStatus
 	projectDescription: string,
 	items: Item[]
 }
