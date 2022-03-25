@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 html, body, #__next {
-	@apply w-full h-full bg-white-300 dark:bg-black-300;
+	@apply w-full h-auto bg-white-300 dark:bg-black-300;
 }
 
 * {
@@ -18,6 +18,6 @@ html, body, #__next {
 
 @screen md {
 	#__next {
-		@apply grid-cols-[103px,1fr] grid-rows-1;
+		@apply grid-cols-[103px,1fr] grid-rows-[minmax(100vh,1fr)];
 	}
 }

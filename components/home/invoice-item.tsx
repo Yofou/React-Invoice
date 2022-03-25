@@ -1,6 +1,8 @@
+import { Invoice } from "@lib/stores/invoices-types"
 
-const InvoiceItem: React.FC = () => {
-	return <li></li>
+type InvoiceItemProps = { invoice: Invoice }
+const InvoiceItem: React.FC<InvoiceItemProps> = ({ invoice }) => {
+	return <li>{invoice.id}</li>
 }
 
 export default InvoiceItem

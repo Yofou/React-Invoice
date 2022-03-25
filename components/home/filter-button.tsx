@@ -17,7 +17,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({ children }) => {
 		</button>
 
 		{isOpen && (
-			<div className="absolute top-[calc(100%+23px)] left-1/2 w-full min-w-[193px] bg-grey-1200 p-6 rounded-[8px] transform -translate-x-1/2 flex flex-col gap-4">
+			<div className="absolute top-[calc(100%+23px)] z-10 left-1/2 w-full min-w-[193px] bg-grey-1200 p-6 rounded-[8px] transform -translate-x-1/2 flex flex-col gap-4">
 				{children}
 			</div>
 		)}
