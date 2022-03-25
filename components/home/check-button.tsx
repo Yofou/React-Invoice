@@ -1,10 +1,11 @@
 import { AppDispatch, RootState } from "@lib/stores"
-import { addOrRemoveFilter, InvoiceStatus } from "@lib/stores/filter-by-status"
+import { addOrRemoveFilter } from "@lib/stores/filter-by-status"
+import { PaymentStatus } from "@lib/stores/invoices-types"
 import Image from "next/image"
 import { MouseEventHandler } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-type CheckButtonProps = { invoiceStatus: InvoiceStatus }
+type CheckButtonProps = { invoiceStatus: PaymentStatus }
 const CheckButton: React.FC<CheckButtonProps> = ({ children, invoiceStatus }) => {
 	const filterByStatus = useSelector( (state: RootState) => state.filterByStatus )
 	const dispatch = useDispatch<AppDispatch>()
