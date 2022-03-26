@@ -9,6 +9,7 @@ import { createContext } from "react";
 import { useSelector } from "react-redux";
 import InvoiceControls from "@components/invoices/controls";
 import InvoiceView from "@components/invoices/invoice-view";
+import InvoiceBottomBar from "@components/invoices/invoice-bottom-bar";
 
 export const InvoiceContext = createContext<Invoice | undefined>(undefined) 
 
@@ -19,7 +20,7 @@ const InvoicePage: NextPage = () => {
 	})
 
 	return <InvoiceContext.Provider value={invoice}>
-			<Layout className="grid grid-cols-[minmax(0,730px)] justify-center grid-rows-[repeat(3,max-content)] gap-y-6 py-16">
+			<Layout className="grid grid-cols-[minmax(0,730px)] justify-center grid-rows-[repeat(3,max-content),1fr] sm:grid-rows-[repeat(3,max-content)] gap-y-6 py-16 p-10 pb-0 sm:pb-16">
 				<Link href="/">
 					<a className="flex gap-[23px] justify-self-start items-center text-white-full text-h4">
 						<Image src="/icon-arrow-left.svg" alt="<" layout="fixed" width="7" height="10px" />
@@ -29,6 +30,7 @@ const InvoicePage: NextPage = () => {
 
 				<InvoiceControls />
 				<InvoiceView />
+				<InvoiceBottomBar />
 			</Layout>
 	</InvoiceContext.Provider>
 }

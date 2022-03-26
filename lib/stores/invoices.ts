@@ -29,7 +29,7 @@ const data: Invoice[] = [
 				price: 156,
 			},
 			{
-				name: "Banner Design",
+				name: "Email Design",
 				qty: 2,
 				price: 200,
 			},

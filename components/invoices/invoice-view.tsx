@@ -18,17 +18,17 @@ const InvoiceView: React.FC = () => {
 
 	const totalAmount = invoice.items.reduce( (total, curr) => total + (curr.price * curr.qty), 0)
 
-	return <section className="w-full p-12 bg-grey-1500 rounded-[8px] grid grid-cols-[repeat(2,minmax(0,max-content)),1fr] grid-rows-[repeat(5,max-content)] gap-x-[100px]">
+	return <section className="w-full p-8 md:p-12 bg-grey-1500 rounded-[8px] grid grid-cols-[minmax(0,max-content),1fr] sm:grid-cols-[repeat(2,minmax(0,max-content)),1fr] grid-rows-[repeat(7,max-content)] sm:grid-rows-[repeat(5,max-content)] gap-x-10 sm:gap-x-[100px]">
 		<h1 className="hidden">invoice of #{invoice.id}</h1>
 
-		<div className="flex flex-col gap-2 row-start-1 row-end-2 col-start-1 col-end-2">
-			<h1 className="text-h3 uppercase text-white-full">
+		<div className="flex flex-col sm:gap-2 row-start-1 row-end-2 col-start-1 col-end-[-1] sm:col-end-2 mb-[30px] sm:mb-0">
+			<h1 className="text-h4 md:text-h3 uppercase text-white-full">
 				<span className="text-grey-600">#</span>{invoice.id}
 			</h1>
 			<p className="text-body-1 text-grey-300">{invoice.projectDescription}</p>
 		</div>
 
-		<address className="text-right mb-5 text-body-2 text-grey-300 not-italic self-end col-start-3 col-end-4">
+		<address className="sm:text-right mb-[30px] sm:mb-5 text-body-2 text-grey-300 not-italic sm:self-end col-start-1 col-end-[-1] sm:col-start-3 sm:col-end-4">
 			19 Union Terrace<br />
 			London<br />
 			E1 3EZ<br />
@@ -37,10 +37,10 @@ const InvoiceView: React.FC = () => {
 
 		<InvoiceViewItem title="Invoice Date">{readableInvoiceDate}</InvoiceViewItem>
 		<InvoiceViewItem title="Bill to">{invoice.billTo.name}</InvoiceViewItem>
-		<InvoiceViewItem className="ml-[10px] mb-2" title="Sent to">{invoice.billTo.email}</InvoiceViewItem>
+		<InvoiceViewItem className="row-start-5 row-end-6 sm:row-auto mt-8 sm:mt-0 sm:ml-[10px]" title="Sent to">{invoice.billTo.email}</InvoiceViewItem>
 		<InvoiceViewItem className="self-end" title="Payment Due">{paymentDue}</InvoiceViewItem>
 		
-		<address className="text-body-2 not-italic text-grey-300">
+		<address className="text-body-2 not-italic text-grey-300 mt-2">
 			84 Church Way<br />
 			Bradford<br />
 			BD1 9PB<br />
