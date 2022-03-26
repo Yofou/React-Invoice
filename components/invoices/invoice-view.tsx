@@ -1,7 +1,9 @@
 import { DateTime, Duration } from "luxon"
 import { InvoiceContext } from "pages/invoices/[id]"
 import { useContext } from "react"
+import InvoiceViewAmount from "./invoice-view-amount"
 import InvoiceViewItem from "./invoice-view-item"
+import InvoiceViewTable from "./invoice-view-table"
 
 const InvoiceView: React.FC = () => {
 	const invoice = useContext(InvoiceContext)
@@ -14,7 +16,9 @@ const InvoiceView: React.FC = () => {
 		.plus( duration )
 		.toFormat("d LLL yyyy")
 
-	return <section className="w-full p-12 bg-grey-1500 rounded-[8px] grid grid-cols-[repeat(2,minmax(0,max-content)),1fr] grid-rows-[repeat(3,max-content)] gap-x-[100px]">
+	const totalAmount = invoice.items.reduce( (total, curr) => total + (curr.price * curr.qty), 0)
+
+	return <section className="w-full p-12 bg-grey-1500 rounded-[8px] grid grid-cols-[repeat(2,minmax(0,max-content)),1fr] grid-rows-[repeat(5,max-content)] gap-x-[100px]">
 		<h1 className="hidden">invoice of #{invoice.id}</h1>
 
 		<div className="flex flex-col gap-2 row-start-1 row-end-2 col-start-1 col-end-2">
@@ -36,12 +40,15 @@ const InvoiceView: React.FC = () => {
 		<InvoiceViewItem className="ml-[10px] mb-2" title="Sent to">{invoice.billTo.email}</InvoiceViewItem>
 		<InvoiceViewItem className="self-end" title="Payment Due">{paymentDue}</InvoiceViewItem>
 		
-		<address className="text-body-2 text-grey-300">
+		<address className="text-body-2 not-italic text-grey-300">
 			84 Church Way<br />
 			Bradford<br />
 			BD1 9PB<br />
 			United Kingdom
 		</address>
+
+		<InvoiceViewTable className="col-start-1 col-end-[-1] mt-[45px]" />
+		<InvoiceViewAmount className="col-start-1 col-end-[-1]" amount={totalAmount} />
 	</section>
 }
 
