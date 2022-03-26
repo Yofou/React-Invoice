@@ -36,7 +36,7 @@ const data: Invoice[] = [
 		],
 	},
 	{
-		id: "RT3080",
+		id: "AA1449",
 		billFrom: {
 			address: "19 Union Terrace",
 			city: "London",
@@ -69,7 +69,7 @@ const data: Invoice[] = [
 		],
 	},
 	{
-		id: "RT3080",
+		id: "XM9141",
 		billFrom: {
 			address: "19 Union Terrace",
 			city: "London",
