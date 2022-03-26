@@ -105,7 +105,7 @@ const data: Invoice[] = [
 
 export const invoices = createSlice({
 	name: "invoices",
-	initialState: data,
+	initialState: data as Invoice[],
 	reducers: {
 		clear: () => {
 			return []
