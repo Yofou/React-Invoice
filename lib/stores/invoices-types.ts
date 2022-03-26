@@ -28,7 +28,7 @@ export interface Invoice {
 	id: string,
 	billFrom: BillInfo,
 	billTo: BillInfo & { name: string, email: string }
-	invoiceData: Date,
+	invoiceDate: number,
 	paymentTerms: PaymentTerms,
 	paymentStatus: PaymentStatus
 	projectDescription: string,

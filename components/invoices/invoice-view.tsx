@@ -6,7 +6,7 @@ import InvoiceViewItem from "./invoice-view-item"
 const InvoiceView: React.FC = () => {
 	const invoice = useContext(InvoiceContext)
 	if (!invoice) return <></>
-	const invoiceDate = DateTime.fromJSDate(invoice.invoiceData)
+	const invoiceDate = DateTime.fromMillis(invoice.invoiceDate)
 	const readableInvoiceDate = invoiceDate.toFormat("d LLL yyyy")
 	
 	const duration = Duration.fromObject({ day: invoice.paymentTerms })

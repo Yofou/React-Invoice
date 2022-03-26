@@ -2,11 +2,15 @@ import { Invoice } from "@lib/stores/invoices-types"
 import Image from "next/image"
 import Link from "next/link"
 import InvoiceStatus from "@components/top-level/invoice-status"
+import { DateTime, Duration } from "luxon"
 
 type InvoiceItemProps = { invoice: Invoice }
 const InvoiceItem: React.FC<InvoiceItemProps> = ({ invoice }) => {
 	
-	const readableDate = new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format( invoice.invoiceData )
+	const invoiceDate = DateTime.fromMillis(invoice.invoiceDate)
+	const duration = Duration.fromObject({ day: invoice.paymentTerms })
+
+	const readableDate = invoiceDate.plus( duration ).toFormat("d LLL yyyy")
 	const total = invoice.items.reduce((total, curr) => total + (curr.price * curr.qty), 0)
 	const readableTotal = new Intl.NumberFormat("en-GB", { currency: "GBP", style: "currency" }).format( total )
 
