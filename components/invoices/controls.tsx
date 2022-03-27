@@ -1,10 +1,15 @@
 import Button from "@components/top-level/button"
 import InvoiceStatus from "@components/top-level/invoice-status"
 import { InvoiceContext } from "pages/invoices/[id]"
-import { useContext } from "react"
+import { useContext, useState } from "react"
+import ConfirmDeleteModel from "./confirm-delete-model"
 
 const InvoiceControls: React.FC = () => {
 	const invoice = useContext(InvoiceContext)
+	const [isOpen, setIsOpen] = useState(false)
+	const onDeleteButtonClick = () => setIsOpen(true)
+	const onDeleteClick = () => setIsOpen(false)
+	const onModelCancel = () => setIsOpen(false)
 	if (!invoice) return <></>
 
 	return <nav className="grid grid-rows-1 grid-cols-[max-content,1fr,repeat(3,max-content)] gap-2 w-full px-8 py-5 bg-grey-1500 rounded-[8px]" aria-label="invoie controls">
@@ -13,7 +18,8 @@ const InvoiceControls: React.FC = () => {
 		</h1>
 
 		<Button className="hidden sm:inline-block justify-self-end text-grey-300 bg-grey-1200 text-h4">Edit</Button>
-		<Button className="hidden sm:inline-block text-white-full bg-red-600 text-h4">Delete</Button>
+		<Button onClick={onDeleteButtonClick} className="hidden sm:inline-block text-white-full bg-red-600 text-h4">Delete</Button>
+		<ConfirmDeleteModel isOpen={isOpen} onCancel={onModelCancel} onDelete={onDeleteClick} />
 		<Button className="hidden sm:inline-block text-white-full bg-purple-600 text-h4">Mark as Paid</Button>
 	</nav>
 }
