@@ -31,7 +31,7 @@ const ConfirmDeleteModel: React.FC<ConfirmDeleteModelProps> = ({ isOpen, onCance
 
 	if (!invoice) return <></>
 
-	return <Dialog isOpen={isOpen}>
+	return <Dialog zIndex={20} isOpen={isOpen}>
 		<div ref={ref} className="mx-6 max-w-[480px] place-self-center bg-grey-1500 rounded-[8px] flex flex-col gap-3 p-12">
 			<h1 className="text-[24px] tracking-[-0.8px] leading-[32px] font-bold text-white-full">Confirm Deletion</h1>
 			<p className="text-body-1 text-grey-300">Are you sure you want to delete invoice #{invoice.id}? This action cannot be undone.</p>

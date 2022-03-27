@@ -6,10 +6,14 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import CheckButton from "./check-button"
 import FilterButton from "./filter-button"
+import NewInvoice from "./new-invoice"
 
 const Controls: React.FC = () => {
 	const invoices = useSelector((state: RootState) => state.invoices)
 	const [isMobile, setIsMobile] = useState(false)
+	const [isFormOpen, setIsFormOpen] = useState(false)
+	const onAddNewInvoice = () => setIsFormOpen(true) 
+	const onFormCancel = () => setIsFormOpen(false)
 
 	useEffect(() => {
 		const onResize = () => {
@@ -43,12 +47,16 @@ const Controls: React.FC = () => {
 			<CheckButton invoiceStatus={PaymentStatus.Paid}>Paid</CheckButton>
 		</FilterButton>
 
-		<Button className="bg-purple-600 text-white-full text-h4 col-start-3 col-end-4 row-start-1 self-center row-end-3 !p-2 !pr-[15px] flex items-center gap-4">
+		<Button 
+			className="bg-purple-600 text-white-full text-h4 col-start-3 col-end-4 row-start-1 self-center row-end-3 !p-2 !pr-[15px] flex items-center gap-4"
+			onClick={onAddNewInvoice}
+		>
 			<div className="bg-white-full w-8 h-8 rounded-full grid place-content-center">
 				<Image className="transform translate-x-[1px]" src="/icon-plus.svg" alt="" layout="fixed" width="11px" height="11px" />
 			</div>
 			{ isMobile ? "New" : "New Invoice" }
 		</Button>
+		<NewInvoice onCancel={onFormCancel} isOpen={isFormOpen} />
 	</nav>
 }
 

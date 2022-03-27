@@ -3,7 +3,7 @@ import Link from "next/link"
 
 const NavBar: React.FC = () => {
 	return <nav 
-		className="w-full h-full bg-grey-1500 grid gap-8 grid-cols-[80px,1fr,max-content] md:grid-rows-[103px,1fr,max-content] md:grid-cols-1 md:rounded-r-[20px] overflow-hidden"
+		className="w-full h-full bg-grey-1500 z-20 grid gap-8 grid-cols-[80px,1fr,max-content] md:grid-rows-[103px,1fr,max-content] md:grid-cols-1 md:rounded-r-[20px] overflow-hidden"
 		aria-label="primary navigation"
 	>
 		<Link href="/">
