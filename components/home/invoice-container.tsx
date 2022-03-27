@@ -1,4 +1,5 @@
 import { RootState } from "@lib/stores"
+import { AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useSelector } from "react-redux"
 import InvoiceItem from "./invoice-item"
@@ -21,9 +22,11 @@ const InvoiceContainer: React.FC = () => {
 	</section>
 
 	return <ul className="w-full flex flex-col gap-4">
-		{filterInvoices.map(invoice => (
-			<InvoiceItem invoice={invoice} key={invoice.id} />
-		))}
+		<AnimatePresence>
+			{filterInvoices.map(invoice => (
+				<InvoiceItem invoice={invoice} key={invoice.id} />
+			))}
+		</AnimatePresence>
 	</ul>
 }
 

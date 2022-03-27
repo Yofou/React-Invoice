@@ -1,4 +1,5 @@
 import { useDetectClickOutside } from "@lib/click-outside"
+import { motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import Dialog from "./dialog"
 
@@ -25,9 +26,16 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ isOpen, onCancel, children })
 	}, [isOpen])
 
 	return <Dialog isOpen={isOpen}>
-		<div ref={ref} className="pl-[103px] w-full h-full bg-black-300 max-w-[calc(616px+103px)]">
+		<motion.div 
+			ref={ref} 
+			className="pl-[103px] w-full h-full bg-black-300 max-w-[calc(616px+103px)]"
+			initial={{ x: "-100%" }}
+			animate={{ x: "0%" }}
+			exit={{ x: "-100%" }}
+			transition={{ type: "spring", duration: 0.4 }}
+		>
 			{children}
-		</div>
+		</motion.div>
 	</Dialog>
 }
 

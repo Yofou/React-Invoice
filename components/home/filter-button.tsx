@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import { useState } from "react"
 import { useDetectClickOutside } from "react-detect-click-outside"
@@ -16,11 +17,19 @@ const FilterButton: React.FC<FilterButtonProps> = ({ children, isMobile }) => {
 			<Image className={`transition-transform transform ${isOpen ? "-rotate-180" : ""}`} src="/icon-arrow-down.svg" alt="" layout="fixed" width="11px" height="7px" />
 		</button>
 
-		{isOpen && (
-			<div className="absolute top-[calc(100%+23px)] z-10 left-1/2 w-full min-w-[193px] bg-grey-1200 p-6 rounded-[8px] transform -translate-x-1/2 flex flex-col gap-4">
-				{children}
-			</div>
-		)}
+		<AnimatePresence>
+			{isOpen && (
+				<motion.div 
+					className="absolute top-[calc(100%+23px)] z-10 left-1/2 w-full min-w-[193px] bg-grey-1200 p-6 rounded-[8px] flex flex-col gap-4"
+					initial={{ opacity: 0, translateX: "-50%" }}
+					animate={{ opacity: 1, translateX: "-50%" }}
+					exit={{ opacity: 0, translateX: "-50%" }}
+					transition={{ type: "spring", duration: 0.4 }}
+				>
+					{children}
+				</motion.div>
+			)}
+		</AnimatePresence>
 	</div>
 }
 

@@ -8,6 +8,8 @@ this pseudo (meaning fake) [Invoice application](https://www.frontendmentor.io/c
 * NextJS (Full-stack application Framework for react)
 * Tailwind (CSS Framework)
 * Redux & Redux Toolkit (Global State management)
+* Luxon (Date manipulation)
+* Framer Motions (Animation Libary)
 
 ## Get started (local development)
 

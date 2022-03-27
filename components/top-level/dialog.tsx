@@ -1,10 +1,30 @@
+import { AnimatePresence, motion, Variants } from "framer-motion"
+
 type DialogProps = { isOpen: boolean, zIndex?: number }
 const Dialog: React.FC<DialogProps> = ({ children, isOpen, zIndex=10 }) => {
-	if (isOpen === false) return <></>
+	const varients: Variants = {
+		hidden: {
+			backgroundColor: "rgba(0, 0, 0, 0)",
+			zIndex,
+		},
+		visable: (i: number) => ({
+			backgroundColor: `rgba(0, 0, 0, ${i})`,
+			zIndex
+		})
+	}
 
-	return <div className="fixed grid w-full h-full top-0 left-0 bg-black-full/50" style={{ zIndex }}>
-		{children}
-	</div>
+	return <AnimatePresence>
+		{isOpen && <motion.div 
+			className="fixed grid w-full h-full top-0 left-0" 
+			initial="hidden"
+			exit={{ opacity: 0 }}
+			animate="visable"
+			custom={0.5}
+			variants={varients}
+		>
+			{children}
+		</motion.div>}
+	</AnimatePresence> 
 }
 
 export default Dialog
