@@ -13,7 +13,7 @@ html, body, #__next {
 }
 
 #__next {
-	@apply grid grid-rows-[80px,1fr] grid-cols-1;
+	@apply grid grid-rows-[80px,minmax(calc(100vh-80px),1fr)] grid-cols-1;
 }
 
 @screen md {
