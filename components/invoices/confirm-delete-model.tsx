@@ -1,25 +1,32 @@
 import Button from "@components/top-level/button"
 import Dialog from "@components/top-level/dialog"
-import { useDetectClickOutside } from "react-detect-click-outside"
+import { useDetectClickOutside } from "@lib/click-outside"
 import { InvoiceContext } from "pages/invoices/[id]"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 
 type ConfirmDeleteModelProps = { isOpen: boolean, onCancel: () => void, onDelete?: () => void }
 const ConfirmDeleteModel: React.FC<ConfirmDeleteModelProps> = ({ isOpen, onCancel, onDelete }) => {
 	const invoice = useContext(InvoiceContext)
 	const [disableClick, setDisableClick] = useState(true)
-	console.log(disableClick)
-	const ref = useDetectClickOutside({ 
-		onTriggered: (e: Event) => onCancel(),
-		disableClick: disableClick,
+	const ref = useRef(null)
+
+	useDetectClickOutside({ 
+		ref,
+		onTriggered: (e: Event) => {
+			onCancel()
+		},
+		disableClick,
 	})
 
 	useEffect(() => {
+		let timeoutID: NodeJS.Timeout | undefined = undefined
 		if (isOpen) { 
-			setTimeout( () => setDisableClick(false), 1000 )
+			timeoutID = setTimeout( () => setDisableClick(false), 100 )
 		} else {
 			setDisableClick(true)
 		}
+
+		return () => timeoutID && clearTimeout(timeoutID)
 	}, [isOpen])
 
 	if (!invoice) return <></>
