@@ -1,14 +1,14 @@
 import InvoiceItemList from "@components/invoices/invoice-item-list"
 import InvoiceLabelInput from "@components/top-level/invoice-label-input"
-import { Invoice, Item, PaymentTerms } from "@lib/stores/invoices-types"
+import { Invoice, Item, PaymentStatus, PaymentTerms } from "@lib/stores/invoices-types"
 import { DateTime } from "luxon"
-import { FormEventHandler, useEffect, useState } from "react"
+import { FormEventHandler, forwardRef, useEffect, useState } from "react"
 import Button from "./button"
 import InvoiceLabelCalender from "./invoice-label-calender"
 import InvoiceLabelDropDown from "./invoice-label-dropdown"
 
-type InvocieFormProps = { onSubmit?: FormEventHandler<HTMLFormElement>, invoice?: Invoice }
-const InvoiceForm: React.FC<InvocieFormProps> = ({ onSubmit, invoice }) => {
+type InvocieFormProps = React.PropsWithChildren<{ onFormSubmit?: (value: Invoice) => void, invoice?: Invoice, }>
+const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(({ invoice, onFormSubmit }, formRef) => {
 	const [fromAddress, setFromAddress] = useState( invoice?.billFrom.address ?? "" )
 	const [fromCity, setFromCity] = useState( invoice?.billFrom.city ?? "" )
 	const [fromPostCode, setFromPostCode] = useState( invoice?.billFrom.postCode ?? "" )
@@ -26,12 +26,39 @@ const InvoiceForm: React.FC<InvocieFormProps> = ({ onSubmit, invoice }) => {
 	const [projectDescription, setProjectDescription] = useState( invoice?.projectDescription ?? "" )
 	const [issueDate, setIssueDate] = useState( DateTime.fromMillis( invoice?.invoiceDate ?? DateTime.now().toMillis() ))
 
+	const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+		event.preventDefault()	
+		const submission: Invoice = {
+			id: invoice?.id ?? "",
+			billFrom: {
+				address: fromAddress,
+				city: fromCity,
+				postCode: fromPostCode,
+				country: fromCountry,
+			},
+			billTo: {
+				name: toClientName,
+				email: toClientEmail,
+				address: toAddress,
+				city: toCity,
+				postCode: toPostCode,
+				country: toCountry,
+			},
+			paymentTerms,
+			paymentStatus: invoice?.paymentStatus ?? PaymentStatus.Draft,
+			projectDescription: projectDescription,
+			invoiceDate: issueDate.toMillis(),
+			items,
+		}
+		onFormSubmit && onFormSubmit( submission )
+	}  
+
 	useEffect(() => {
 		const itemsCopy = JSON.parse( JSON.stringify( invoice?.items ?? [ { name: "", qty: 1, price: 0 } ] ) )
 		setItem( itemsCopy )
 	}, [invoice?.items])
 
-	return <form onSubmit={onSubmit} className="grid grid-rows-[repeat(2,max-content)] md:overflow-y-scroll scrollbar scrollbar-track-black-300 scrollbar-thumb-grey-1200 py-[30px] pr-[10px] -z-10">
+	return <form ref={formRef} onSubmit={onSubmit} className="grid grid-rows-[repeat(2,max-content)] md:overflow-y-scroll scrollbar scrollbar-track-black-300 scrollbar-thumb-grey-1200 py-[30px] pr-[10px] -z-10">
 		<fieldset className="grid grid-cols-2 md:grid-cols-3 gap-6 grid-flow-row">
 			<h2 className="text-purple-600 text-h4 w-full">Bill from</h2>
 			<InvoiceLabelInput className="col-start-1 col-end-[-1]" value={fromAddress} onValueChange={setFromAddress}>Street Address</InvoiceLabelInput>
@@ -70,6 +97,8 @@ const InvoiceForm: React.FC<InvocieFormProps> = ({ onSubmit, invoice }) => {
 			<Button onClick={onAddItem} className="w-full mt-12 md:mt-4 bg-grey-1200 text-grey-300 text-h4">+ Add New Item</Button>
 		</fieldset>
 	</form> 
-}
+})
+
+InvoiceForm.displayName = "InvoiceForm"
 
 export default InvoiceForm

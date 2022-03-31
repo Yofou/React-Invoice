@@ -85,17 +85,18 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({ id, selected, setSele
 		<AnimatePresence>
 			{isOpen && (
 				<div ref={containerRef} className="grid items-center grid-cols-7 grid-rows-[repeat(6,15px)] gap-y-4 gap-x-[14px] absolute top-[calc(100%+8px)] left-0 w-full bg-grey-1200 rounded-[8px] px-[18px] pb-8 pt-6 overflow-hidden z-40">
-					<button className="row-start-1 row-end-2 col-start-1 col-end-2" onClick={onMonthDec}>
+					<button type="button" className="row-start-1 row-end-2 col-start-1 col-end-2" onClick={onMonthDec}>
 						<Image src="/icon-arrow-left.svg" alt="" layout="fixed" width="7px" height="10px" />
 					</button>
 					<h1 className="text-white-full text-center col-start-2 col-end-7 row-start-1 row-end-2 text-h4">{view.toFormat("LLL yyyy")}</h1>
-					<button className="row-start-1 row-end-2 col-start-[-2] col-end-[-1]" onClick={onMonthInc}>
+					<button type="button" className="row-start-1 row-end-2 col-start-[-2] col-end-[-1]" onClick={onMonthInc}>
 						<Image src="/icon-arrow-right.svg" alt="" layout="fixed" width="7px" height="10px" />
 					</button>
 
 					<AnimatePresence initial={false} exitBeforeEnter>
 						{Array.from({ length: view.daysInMonth }).map((_, index) => (
 							<motion.button 
+								type="button"
 								onClick={onDatePick(index + 1)} 
 								className="text-white-full hover:text-purple-600 text-center text-h4" 
 								key={getKey(index)}

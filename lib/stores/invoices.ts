@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Invoice, PaymentStatus, PaymentTerms } from "./invoices-types"
 
 const data: Invoice[] = [
@@ -107,8 +107,24 @@ export const invoices = createSlice({
 	name: "invoices",
 	initialState: data as Invoice[],
 	reducers: {
-		clear: () => {
-			return []
+		deleteByID: (state, action: PayloadAction<string>) => {
+			return state.filter(invoice => {
+				return invoice.id !== action.payload
+			})
+		},
+		markAsPaid: (state, action: PayloadAction<string>) => {
+			return state.map(invoice => {
+				if (invoice.id === action.payload) return { ...invoice, paymentStatus: PaymentStatus.Paid }
+				return invoice
+			})
+		},
+		updateInvoice: (state, action: PayloadAction<Invoice>) => {
+			return state.map(invoice => {
+				if ( invoice.id === action.payload.id ) return action.payload
+				return invoice
+			})
 		}
 	}
 })
+
+export const { deleteByID, markAsPaid, updateInvoice } = invoices.actions

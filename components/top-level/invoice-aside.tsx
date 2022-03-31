@@ -1,20 +1,17 @@
 import { useDetectClickOutside } from "@lib/click-outside"
 import { motion } from "framer-motion"
-import { Children, FormEventHandler, useEffect, useRef, useState } from "react"
+import { Children, forwardRef, useEffect, useRef, useState } from "react"
 import Dialog from "./dialog"
 import styles from "@styles/invoice-form.module.css"
 import InvoiceForm from "@components/top-level/invoice-form"
 import { Invoice } from "@lib/stores/invoices-types"
 
-type InvoiceAsideProps = { invoice?: Invoice, isOpen: boolean, onCancel: () => void }
-const InvoiceAside: React.FC<InvoiceAsideProps> = ({ isOpen, onCancel, children, invoice }) => {
+
+type InvoiceAsideProps = React.PropsWithChildren<{ invoice?: Invoice, isOpen: boolean, onCancel: () => void, onFormSubmit?: (value: Invoice) => void }>
+const InvoiceAside = forwardRef<HTMLFormElement, InvoiceAsideProps>(({ isOpen, onCancel, children, invoice, onFormSubmit }, formRef) => {
 	const [title, buttons] = Children.toArray( children )
 	const ref = useRef(null)
 	const [disableClick, setDisableClick] = useState(true)
-
-	const onSubmit: FormEventHandler<HTMLFormElement>= (event) => {
-		event.preventDefault()
-	}
 	
 	useDetectClickOutside({
 		ref,
@@ -49,13 +46,15 @@ const InvoiceAside: React.FC<InvoiceAsideProps> = ({ isOpen, onCancel, children,
 				{title}
 			</h1>
 			
-			<InvoiceForm invoice={invoice} onSubmit={onSubmit} />
+			<InvoiceForm onFormSubmit={onFormSubmit} invoice={invoice} ref={formRef} />
 			
 			<div className={`${styles["bg-shadow"]} relative bg-black-300 md:pl-[calc(calc(103px+57px))] px-6 md:pr-[56px] -ml-6 md:-ml-[calc(103px+57px)] rounded-tr-[20px] -mr-6 md:-mr-8`}>
 				{buttons}
 			</div>
 		</motion.aside>
 	</Dialog>
-}
+})
+
+InvoiceAside.displayName = "InvoiceAside"
 
 export default InvoiceAside

@@ -45,7 +45,12 @@ const InvoiceDropDown: InvoiceDropDownComponent = ({ id, options, onOptionSelect
 					transition={{ type: "spring", damping: 10, stiffness: 100, duration: 200 }}
 				>
 					{options.map( (option, index) => (
-						<button className="text-h4 text-left px-6 py-4 text-grey-300 hover:text-purple-600 last-of-type:border-b-0 border-b border-grey-1500" onClick={onSelected(option)} key={index}>
+						<button 
+							type="button" 
+							className="text-h4 text-left px-6 py-4 text-grey-300 hover:text-purple-600 last-of-type:border-b-0 border-b border-grey-1500" 
+							onClick={onSelected(option)} 
+							key={index}
+						>
 							{optionDisplay(option)}
 						</button>
 					))}

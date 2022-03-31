@@ -29,10 +29,10 @@ const InvoiceView: React.FC = () => {
 		</div>
 
 		<address className="sm:text-right mb-[30px] sm:mb-5 text-body-2 text-grey-300 not-italic sm:self-end col-start-1 col-end-[-1] sm:col-start-3 sm:col-end-4">
-			19 Union Terrace<br />
-			London<br />
-			E1 3EZ<br />
-			United Kingdom
+			{invoice.billFrom.address}<br />
+			{invoice.billFrom.city}<br />
+			{invoice.billFrom.postCode}<br />
+			{invoice.billFrom.country}
 		</address>
 
 		<InvoiceViewItem title="Invoice Date">{readableInvoiceDate}</InvoiceViewItem>
@@ -41,10 +41,10 @@ const InvoiceView: React.FC = () => {
 		<InvoiceViewItem className="self-end" title="Payment Due">{paymentDue}</InvoiceViewItem>
 		
 		<address className="text-body-2 not-italic text-grey-300 mt-2">
-			84 Church Way<br />
-			Bradford<br />
-			BD1 9PB<br />
-			United Kingdom
+			{invoice.billTo.address}<br />
+			{invoice.billTo.city}<br />
+			{invoice.billTo.postCode}<br />
+			{invoice.billTo.country}
 		</address>
 
 		<InvoiceViewTable className="col-start-1 col-end-[-1] mt-[45px]" />
