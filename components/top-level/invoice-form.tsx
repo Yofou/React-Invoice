@@ -31,32 +31,33 @@ const InvoiceForm: React.FC<InvocieFormProps> = ({ onSubmit, invoice }) => {
 		setItem( itemsCopy )
 	}, [invoice?.items])
 
-	return <form onSubmit={onSubmit} className="grid grid-rows-[repeat(2,max-content)] overflow-y-scroll scrollbar scrollbar-track-black-300 scrollbar-thumb-grey-1200 py-[30px] pr-[10px] -z-10">
-		<fieldset className="grid grid-cols-3 gap-6 grid-flow-row">
+	return <form onSubmit={onSubmit} className="grid grid-rows-[repeat(2,max-content)] md:overflow-y-scroll scrollbar scrollbar-track-black-300 scrollbar-thumb-grey-1200 py-[30px] pr-[10px] -z-10">
+		<fieldset className="grid grid-cols-2 md:grid-cols-3 gap-6 grid-flow-row">
 			<h2 className="text-purple-600 text-h4 w-full">Bill from</h2>
 			<InvoiceLabelInput className="col-start-1 col-end-[-1]" value={fromAddress} onValueChange={setFromAddress}>Street Address</InvoiceLabelInput>
 			<InvoiceLabelInput value={fromCity} onValueChange={setFromCity}>City</InvoiceLabelInput>
 			<InvoiceLabelInput value={fromPostCode} onValueChange={setFromPostCode}>Post Code</InvoiceLabelInput>
-			<InvoiceLabelInput value={fromCountry} onValueChange={setFromCountry}>Country</InvoiceLabelInput>
+			<InvoiceLabelInput className="col-start-1 col-end-[-1] md:col-auto" value={fromCountry} onValueChange={setFromCountry}>Country</InvoiceLabelInput>
 		</fieldset>
 
-		<fieldset className="w-full grid grid-cols-3 grid-flow-row gap-6 mt-12">
+		<fieldset className="w-full grid grid-cols-2 md:grid-cols-3 grid-flow-row gap-6 mt-12">
 			<h2 className="text-purple-600 text-h4 w-full">Bill to</h2>
 			<InvoiceLabelInput className="col-start-1 col-end-[-1]" value={toClientName} onValueChange={setToClientName}>Clients Name</InvoiceLabelInput>
 			<InvoiceLabelInput className="col-start-1 col-end-[-1]" value={toClientEmail} onValueChange={setToClientEmail}>Clients Email</InvoiceLabelInput>
 			<InvoiceLabelInput className="col-start-1 col-end-[-1]" value={toAddress} onValueChange={setToAddress}>Street address</InvoiceLabelInput>
 			<InvoiceLabelInput value={toCity} onValueChange={setToCity}>City</InvoiceLabelInput>
 			<InvoiceLabelInput value={toPostCode} onValueChange={setToPostCode}>Post Code</InvoiceLabelInput>
-			<InvoiceLabelInput value={toCountry} onValueChange={setToCountry}>Country</InvoiceLabelInput>
+			<InvoiceLabelInput className="col-start-1 col-end-[-1] md:col-auto" value={toCountry} onValueChange={setToCountry}>Country</InvoiceLabelInput>
 		</fieldset>
 		
 		<fieldset className="w-full grid grid-cols-2 grid-flow-row gap-6 mt-12">
-			<InvoiceLabelCalender selected={issueDate} setSelected={setIssueDate} >Issue Date</InvoiceLabelCalender>
+			<InvoiceLabelCalender className="col-start-1 col-end-[-1] md:col-auto" selected={issueDate} setSelected={setIssueDate} >Issue Date</InvoiceLabelCalender>
 			<InvoiceLabelDropDown 
 				selected={paymentTerms}
 				options={termOptions} 
 				onOptionSelect={setPaymentTerms}
 				optionDisplay={value => `Net ${value} Days`}
+				className="col-start-1 col-end-[-1] md:col-auto"
 			>
 				Payment Term
 			</InvoiceLabelDropDown>
@@ -66,7 +67,7 @@ const InvoiceForm: React.FC<InvocieFormProps> = ({ onSubmit, invoice }) => {
 		<fieldset className="w-full mt-8">
 			<h1 className="text-[18px] leading-[32px] tracking-[-0.38px] font-bold text-[#777F98] mb-4">Item List</h1>
 			<InvoiceItemList items={items} setItem={setItem} />
-			<Button onClick={onAddItem} className="w-full mt-4 bg-grey-1200 text-grey-300 text-h4">+ Add New Item</Button>
+			<Button onClick={onAddItem} className="w-full mt-12 md:mt-4 bg-grey-1200 text-grey-300 text-h4">+ Add New Item</Button>
 		</fieldset>
 	</form> 
 }

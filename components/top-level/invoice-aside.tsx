@@ -36,10 +36,10 @@ const InvoiceAside: React.FC<InvoiceAsideProps> = ({ isOpen, onCancel, children,
 		return () => clearTimeout(timeoutID)
 	}, [isOpen])
 
-	return <Dialog isOpen={isOpen}>
+	return <Dialog className="!absolute md:!fixed" isOpen={isOpen}>
 		<motion.aside 
 			ref={ref}
-			className="pl-[calc(103px+57px)] pr-8 pt-[56px] w-full h-full bg-black-300 max-w-[calc(616px+103px)] grid grid-rows-[max-content,calc(100vh-2.25rem-110px-56px),110px]"
+			className="px-6 md:pl-[calc(103px+57px)] md:pr-8 pt-[calc(80px+32px)] md:pt-[56px] w-full min-h-full md:h-full bg-black-300 max-w-[calc(616px+103px)] grid grid-rows-[max-content,1fr,91px] md:grid-rows-[max-content,calc(100vh-2.25rem-110px-56px),110px]"
 			initial={{ x: "-100%" }}
 			animate={{ x: "0%" }}
 			exit={{ x: "-100%" }}
@@ -51,7 +51,7 @@ const InvoiceAside: React.FC<InvoiceAsideProps> = ({ isOpen, onCancel, children,
 			
 			<InvoiceForm invoice={invoice} onSubmit={onSubmit} />
 			
-			<div className={`${styles["bg-shadow"]} relative bg-black-300 pl-[calc(calc(103px+57px))] pr-[56px] -ml-[calc(103px+57px)] rounded-tr-[20px] -mr-8`}>
+			<div className={`${styles["bg-shadow"]} relative bg-black-300 md:pl-[calc(calc(103px+57px))] px-6 md:pr-[56px] -ml-6 md:-ml-[calc(103px+57px)] rounded-tr-[20px] -mr-6 md:-mr-8`}>
 				{buttons}
 			</div>
 		</motion.aside>

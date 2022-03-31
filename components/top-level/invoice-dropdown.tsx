@@ -21,6 +21,7 @@ const InvoiceDropDown: InvoiceDropDownComponent = ({ id, options, onOptionSelect
 	const onDropdownClick = () => setIsOpen(!isOpen) 
 	const onSelected = (value: T) => () => {
  		onOptionSelected(value)
+		setIsOpen(false)
 	}
 
 	return <div ref={ref} className="relative z-30">

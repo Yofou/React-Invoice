@@ -1,12 +1,13 @@
 import { DateTime } from "luxon"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDetectClickOutside } from "react-detect-click-outside"
 import { AnimatePresence, motion, Variants } from "framer-motion"
 
 type InvoiceCalenderProps = { id?: string, selected: DateTime, setSelected: (value: DateTime) => void }
 const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({ id, selected, setSelected }) => {
-	const [view, setView] = useState(selected)
+	const containerRef = useRef<HTMLDivElement>(null)
+	const [view, setView] = useState(DateTime.now())
 	const [isOpen, setIsOpen] = useState(false)
 	const [direction, setDirection] = useState(1)
 	const ref = useDetectClickOutside({ onTriggered: () => setIsOpen(false) })
@@ -31,11 +32,12 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({ id, selected, setSele
 	const onDatePick  = (day: number) => () => {
 		const date = view.set({ day, })
 		setSelected(date)
+		setIsOpen(false)
 	}
 
 	useEffect(() => {
 		if (isOpen === false) {
-			setView(selected)
+			setView(DateTime.now())
 		}
 	}, [isOpen, selected])
 
@@ -51,7 +53,7 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({ id, selected, setSele
 
 	const animationButtonVarient: Variants = {
 		moveOut: (i: number) => ({ 
-			translateX: `${direction * -260}px`, 
+			translateX: `${direction * (-1 * (containerRef.current?.clientWidth ?? 260))}px`, 
 			transition: {
 				type: "tween",
 				duration: 0.15,
@@ -65,7 +67,7 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({ id, selected, setSele
 			}
 		}),
 		inital: (i: number) => ({ 
-			translateX: `${direction * 260}px`, 
+			translateX: `${direction * (containerRef.current?.clientWidth ?? 260)}px`, 
 		})
 	} 
 
@@ -82,7 +84,7 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({ id, selected, setSele
 
 		<AnimatePresence>
 			{isOpen && (
-				<div className="grid items-center grid-cols-7 grid-rows-[repeat(6,15px)] gap-y-4 gap-x-[14px] absolute top-[calc(100%+8px)] left-0 w-full bg-grey-1200 rounded-[8px] px-[18px] pb-8 pt-6 overflow-hidden z-10">
+				<div ref={containerRef} className="grid items-center grid-cols-7 grid-rows-[repeat(6,15px)] gap-y-4 gap-x-[14px] absolute top-[calc(100%+8px)] left-0 w-full bg-grey-1200 rounded-[8px] px-[18px] pb-8 pt-6 overflow-hidden z-40">
 					<button className="row-start-1 row-end-2 col-start-1 col-end-2" onClick={onMonthDec}>
 						<Image src="/icon-arrow-left.svg" alt="" layout="fixed" width="7px" height="10px" />
 					</button>
