@@ -18,7 +18,10 @@ const InvoiceAside: React.FC<InvoiceAsideProps> = ({ isOpen, onCancel, children,
 	
 	useDetectClickOutside({
 		ref,
-		onTriggered: (e: Event) => onCancel(),	
+		onTriggered: (e: Event) => { 
+			if ( e?.target instanceof HTMLImageElement || e?.target instanceof HTMLButtonElement ) return 
+			onCancel() 
+		},	
 		disableClick
 	})
 
@@ -35,6 +38,7 @@ const InvoiceAside: React.FC<InvoiceAsideProps> = ({ isOpen, onCancel, children,
 
 	return <Dialog isOpen={isOpen}>
 		<motion.aside 
+			ref={ref}
 			className="pl-[calc(103px+57px)] pr-8 pt-[56px] w-full h-full bg-black-300 max-w-[calc(616px+103px)] grid grid-rows-[max-content,calc(100vh-2.25rem-110px-56px),110px]"
 			initial={{ x: "-100%" }}
 			animate={{ x: "0%" }}

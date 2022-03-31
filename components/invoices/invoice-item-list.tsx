@@ -42,8 +42,8 @@ const InvoiceItemList: React.FC<InvoiceItemListProps> = ({ items, setItem }) => 
 				className="col-start-3 col-end-4" 
 			/>
 			<p className="text-body-1 text-grey-300">{priceFormater.format( item.qty * item.price )}</p>
-			<button type="button" onClick={onDeleteItem(index)}>
-				<Image layout="fixed"width="13px" height="16px" src="/icon-delete.svg" alt="bin" />
+			<button className="relative" type="button" onClick={onDeleteItem(index)}>
+				<Image layout="fixed" width="13px" height="16px" src="/icon-delete.svg" alt="bin" />
 			</button>
 		</Fragment>))}
 	</div>
