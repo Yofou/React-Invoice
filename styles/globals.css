@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 html, body, #__next {
+	background: "";
 	@apply w-full h-auto bg-white-300 dark:bg-black-300;
 }
 

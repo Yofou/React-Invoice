@@ -41,6 +41,7 @@ module.exports = {
 	},
   },
   plugins: [
+	  require("tailwind-scrollbar"),
 	  plugin(
 		  ({ addUtilities, theme }) => {
 			  addUtilities({
