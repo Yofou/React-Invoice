@@ -10,6 +10,7 @@ this pseudo (meaning fake) [Invoice application](https://www.frontendmentor.io/c
 * Redux & Redux Toolkit (Global State management)
 * Luxon (Date manipulation)
 * Framer Motions (Animation Libary)
+* React-Form-Hooks (form validation)
 
 ## Get started (local development)
 
