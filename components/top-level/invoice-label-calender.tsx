@@ -1,8 +1,7 @@
-import { DateTime } from "luxon"
 import ShortUniqueId from "short-unique-id"
 import InvoiceCalender from "./invoice-calender"
 
-type InvoiceLabelCalenderProps = { className?: string, selected: DateTime, setSelected: (value: DateTime) => void }
+type InvoiceLabelCalenderProps = { className?: string, selected: number, setSelected: (value: number) => void }
 const InvoiceLabelCalender: React.FC<InvoiceLabelCalenderProps> = ({ className, children, selected, setSelected }) => {
 	const id = (new ShortUniqueId({ length: 5 }))()
 	return <div className={`${className} w-full flex flex-col gap-[10px]`}>

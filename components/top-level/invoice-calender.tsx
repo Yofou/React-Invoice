@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { useDetectClickOutside } from "react-detect-click-outside"
 import { AnimatePresence, motion, Variants } from "framer-motion"
 
-type InvoiceCalenderProps = { id?: string, selected: DateTime, setSelected: (value: DateTime) => void }
+type InvoiceCalenderProps = { id?: string, selected: number, setSelected: (value: number) => void }
 const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({ id, selected, setSelected }) => {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [view, setView] = useState(DateTime.now())
@@ -31,7 +31,7 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({ id, selected, setSele
 
 	const onDatePick  = (day: number) => () => {
 		const date = view.set({ day, })
-		setSelected(date)
+		setSelected(date.toMillis())
 		setIsOpen(false)
 	}
 
@@ -78,7 +78,7 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({ id, selected, setSele
 			id={id} 
 			type="button"
 		>
-			{selected.toFormat("d LLL yyyy")}
+			{DateTime.fromMillis(selected).toFormat("d LLL yyyy")}
 			<Image layout="fixed" width="16px" height="16px" src="/icon-calendar.svg" alt="" />
 		</button>
 

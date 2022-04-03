@@ -16,6 +16,7 @@ specifiers:
   react: 17.0.2
   react-detect-click-outside: ^1.1.2
   react-dom: 17.0.2
+  react-hook-form: ^7.29.0
   react-redux: ^7.2.6
   sha1: ^1.1.1
   short-unique-id: ^4.4.4
@@ -33,6 +34,7 @@ dependencies:
   react: 17.0.2
   react-detect-click-outside: 1.1.2_react-dom@17.0.2+react@17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-hook-form: 7.29.0_react@17.0.2
   react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
   sha1: 1.1.1
   short-unique-id: 4.4.4
@@ -1843,6 +1845,15 @@ packages:
       object-assign: 4.1.1
       react: 17.0.2
       scheduler: 0.20.2
+    dev: false
+
+  /react-hook-form/7.29.0_react@17.0.2:
+    resolution: {integrity: sha512-NcJqWRF6el5HMW30fqZRt27s+lorvlCCDbTpAyHoodQeYWXgQCvZJJQLC1kRMKdrJknVH0NIg3At6TUzlZJFOQ==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /react-is/16.13.1:
