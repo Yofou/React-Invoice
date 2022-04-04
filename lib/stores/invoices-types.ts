@@ -1,4 +1,4 @@
-interface BillInfo {
+export interface BillInfo {
 	address: string,
 	city: string,
 	postCode: string,

@@ -14,7 +14,6 @@ type InvoiceInputProps<T> = {
 }
 
 type InvoiceInputComponent = <T extends string | number>(prop: InvoiceInputProps<T>) => React.ReactElement<InvoiceInputProps<T>>
-
 const InvoiceInput: InvoiceInputComponent = ({ type="text", id, className, register, defaultValue, key }) => {
 	return <input 
 		key={key}

@@ -2,7 +2,7 @@ import Button from "@components/top-level/button"
 import InvoiceForm from "@components/top-level/invoice-aside"
 import { AppDispatch } from "@lib/stores"
 import { updateInvoice } from "@lib/stores/invoices"
-import { Invoice } from "@lib/stores/invoices-types"
+import { Invoice, PaymentStatus } from "@lib/stores/invoices-types"
 import { InvoiceContext } from "pages/invoices/[id]"
 import { createRef, useContext } from "react"
 import { useDispatch } from "react-redux"
@@ -23,6 +23,7 @@ const EditInvoice: React.FC<EditInvoiceProps> = ({ isOpen, onCancel }) => {
 	}
 	
 	const saveChanges = (newInvoice: Invoice) => {
+		newInvoice.paymentStatus = invoice?.paymentStatus ?? PaymentStatus.Draft
 		dispatch( updateInvoice( newInvoice ) )
 		onCancel()
 	}

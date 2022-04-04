@@ -9,8 +9,9 @@ type InvoiceItemListProps = {
 	itemsWatch: Item[],
 	removeItem: (value: number) => void,
 	register: UseFormRegister<any>,
+	errors?: any;
 }
-const InvoiceItemList: React.FC<InvoiceItemListProps> = ({ items, itemsWatch, removeItem, register }) => {
+const InvoiceItemList: React.FC<InvoiceItemListProps> = ({ items, itemsWatch, removeItem, register, errors }) => {
 	const priceFormater = new Intl.NumberFormat( "en-GB", { minimumFractionDigits: 2 } )
 	
 	const onDeleteItem = (index: number) => () => {
