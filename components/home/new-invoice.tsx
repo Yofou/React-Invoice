@@ -1,9 +1,14 @@
 import InvoiceForm from "@components/top-level/invoice-aside"
 import Button from "@components/top-level/button"
+import { SubmitHandler } from "react-hook-form"
+import { Invoice } from "@lib/stores/invoices-types"
 
 type NewInvoiceProps = { isOpen: boolean, onCancel: () => void }
 const NewInvoice: React.FC<NewInvoiceProps> = ({ isOpen, onCancel }) => {
-	return <InvoiceForm isOpen={isOpen} onCancel={onCancel}>
+	const onSubmit: SubmitHandler<Invoice> = () => {
+
+	}
+	return <InvoiceForm onFormSubmit={onSubmit} isOpen={isOpen} onCancel={onCancel}>
 		<>New Invoice</>
 
 		<div className="w-full h-full grid grid-cols-[max-content,1fr,max-content] gap-2 items-center justify-items-start">

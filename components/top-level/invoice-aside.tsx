@@ -5,9 +5,9 @@ import Dialog from "./dialog"
 import styles from "@styles/invoice-form.module.css"
 import InvoiceForm from "@components/top-level/invoice-form"
 import { Invoice } from "@lib/stores/invoices-types"
+import { SubmitHandler } from "react-hook-form"
 
-
-type InvoiceAsideProps = React.PropsWithChildren<{ invoice?: Invoice, isOpen: boolean, onCancel: () => void, onFormSubmit?: (value: Invoice) => void }>
+type InvoiceAsideProps = React.PropsWithChildren<{ invoice?: Invoice, isOpen: boolean, onCancel: () => void, onFormSubmit: SubmitHandler<Invoice> }>
 const InvoiceAside = forwardRef<HTMLFormElement, InvoiceAsideProps>(({ isOpen, onCancel, children, invoice, onFormSubmit }, formRef) => {
 	const [title, buttons] = Children.toArray( children )
 	const ref = useRef(null)
