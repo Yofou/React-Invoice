@@ -1,5 +1,9 @@
 .bg-shadow::before {
 	pointer-events: none;
-	background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.499577) 100%);
-	@apply absolute top-[-50%] left-0 w-full h-full content-[""] -z-10;
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0.0001) 0%,
+		rgba(0, 0, 0, 0.499577) 100%
+	);
+	@apply absolute top-[-50%] left-0 -z-10 h-full w-full content-[""];
 }

@@ -6,15 +6,15 @@ export const filterByStatus = createSlice({
 	initialState: [] as PaymentStatus[],
 	reducers: {
 		addOrRemoveFilter: (state, action: PayloadAction<PaymentStatus>) => {
-			if ( state.includes( action.payload ) ) {
-				state = state.filter( item => item !== action.payload )
+			if (state.includes(action.payload)) {
+				state = state.filter((item) => item !== action.payload);
 			} else {
-				state.push( action.payload )
+				state.push(action.payload);
 			}
 
-			return state
-		}
-	}
-})
+			return state;
+		},
+	},
+});
 
-export const { addOrRemoveFilter } = filterByStatus.actions
+export const { addOrRemoveFilter } = filterByStatus.actions;

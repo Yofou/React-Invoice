@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body, #__next {
+html,
+body,
+#__next {
 	background: "";
-	@apply w-full h-auto bg-white-300 dark:bg-black-300;
+	@apply h-auto w-full bg-white-300 dark:bg-black-300;
 }
 
 * {
@@ -14,7 +16,7 @@ html, body, #__next {
 }
 
 #__next {
-	@apply grid grid-rows-[80px,minmax(calc(100vh-80px),1fr)] grid-cols-1;
+	@apply grid grid-cols-1 grid-rows-[80px,minmax(calc(100vh-80px),1fr)];
 }
 
 @screen md {

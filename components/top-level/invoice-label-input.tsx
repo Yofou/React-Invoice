@@ -1,31 +1,66 @@
-import { HTMLInputTypeAttribute } from "react"
-import { FieldValues, UseFormGetFieldState, UseFormRegister } from "react-hook-form"
-import ShortUniqueId from "short-unique-id"
-import InvoiceInput from "./invoice-input"
-import { Invoice } from "@lib/stores/invoices-types"
+import { HTMLInputTypeAttribute } from "react";
+import {
+	FieldValues,
+	UseFormGetFieldState,
+	UseFormRegister,
+} from "react-hook-form";
+import ShortUniqueId from "short-unique-id";
+import InvoiceInput from "./invoice-input";
+import { Invoice } from "@lib/stores/invoices-types";
 
-type InvoiceLabelInputProps<T> = React.PropsWithChildren<{ 
-	className?: string, 
-	type?: HTMLInputTypeAttribute,
-	value?: T,
-	onValueChange?: (value: T) => void
-	register?: ReturnType<UseFormRegister<FieldValues>>
-	defaultValue?: T,
-	errors?: any,
-	getFieldState?: UseFormGetFieldState<Invoice>
-}>
+type InvoiceLabelInputProps<T> = React.PropsWithChildren<{
+	className?: string;
+	type?: HTMLInputTypeAttribute;
+	value?: T;
+	onValueChange?: (value: T) => void;
+	register?: ReturnType<UseFormRegister<FieldValues>>;
+	defaultValue?: T;
+	errors?: any;
+	getFieldState?: UseFormGetFieldState<Invoice>;
+}>;
 
-type InvoiceLabelInputComponent = <T extends string | number>(props: InvoiceLabelInputProps<T>) => React.ReactElement<InvoiceLabelInputProps<T>>
-const InvoiceLabelInput: InvoiceLabelInputComponent = ({ className, type="text", children, value, onValueChange, register, defaultValue, errors, getFieldState }) => {
-	const id = (new ShortUniqueId({ length: 5 }))()
-	const fieldState = getFieldState && getFieldState( register?.name as any )
-	const isError = fieldState?.error
-	
-	return <div className={`${className} w-full grid grid-cols-[1fr,max-content] grid-flow-row gap-[10px]`}>
-		<label className={`text-body-1 ${isError ? "text-red-600" : "text-grey-300"}`} htmlFor={id}>{children}</label>
-		{ isError && <p className="text-h4 !text-xs text-red-600">{isError?.message}</p> }
-		<InvoiceInput className={`col-start-1 col-end-[-1] ${isError && "!border-red-600"}`} id={id} type={type} value={value} onValueChange={onValueChange} register={register} defaultValue={defaultValue} />
-	</div>
-}
+type InvoiceLabelInputComponent = <T extends string | number>(
+	props: InvoiceLabelInputProps<T>
+) => React.ReactElement<InvoiceLabelInputProps<T>>;
+const InvoiceLabelInput: InvoiceLabelInputComponent = ({
+	className,
+	type = "text",
+	children,
+	value,
+	onValueChange,
+	register,
+	defaultValue,
+	errors,
+	getFieldState,
+}) => {
+	const id = new ShortUniqueId({ length: 5 })();
+	const fieldState = getFieldState && getFieldState(register?.name as any);
+	const isError = fieldState?.error;
 
-export default InvoiceLabelInput
+	return (
+		<div
+			className={`${className} grid w-full grid-flow-row grid-cols-[1fr,max-content] gap-[10px]`}
+		>
+			<label
+				className={`text-body-1 ${isError ? "text-red-600" : "text-grey-300"}`}
+				htmlFor={id}
+			>
+				{children}
+			</label>
+			{isError && (
+				<p className="!text-xs text-red-600 text-h4">{isError?.message}</p>
+			)}
+			<InvoiceInput
+				className={`col-start-1 col-end-[-1] ${isError && "!border-red-600"}`}
+				id={id}
+				type={type}
+				value={value}
+				onValueChange={onValueChange}
+				register={register}
+				defaultValue={defaultValue}
+			/>
+		</div>
+	);
+};
+
+export default InvoiceLabelInput;

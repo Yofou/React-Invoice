@@ -1,14 +1,28 @@
-import { MouseEventHandler } from "react"
+import { MouseEventHandler } from "react";
 
-type ButtonProps = { onClick?: MouseEventHandler<HTMLButtonElement>, className?: string, type?: "button" | "submit" }
-const Button: React.FC<ButtonProps> = ({ children, onClick, className, type="button" }) => {
-	return <button 
-		type={type}
-		className={`px-6 py-4 rounded-full ${className ?? ''}`} 
-		onClick={onClick}
-	>
-		{ children }
-	</button>
-}
+type ButtonProps = {
+	disabled?: boolean;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
+	className?: string;
+	type?: "button" | "submit";
+};
+const Button: React.FC<ButtonProps> = ({
+	children,
+	onClick,
+	className,
+	type = "button",
+	disabled = false,
+}) => {
+	return (
+		<button
+			type={type}
+			className={`rounded-full px-6 py-4 ${className ?? ""}`}
+			onClick={onClick}
+			disabled={disabled}
+		>
+			{children}
+		</button>
+	);
+};
 
-export default Button
+export default Button;
