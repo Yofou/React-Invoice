@@ -72,7 +72,7 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 
 		const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
 			event.preventDefault();
-			handleSubmit(onFormSubmit, console.log)(event);
+			handleSubmit(onFormSubmit)(event);
 		};
 
 		return (
