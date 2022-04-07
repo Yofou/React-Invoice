@@ -2,6 +2,7 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
 	content: ["./{pages,components}/**/*.tsx"],
+	darkMode: "class",
 	theme: {
 		colors: {
 			purple: {
@@ -38,6 +39,11 @@ module.exports = {
 			base: "1rem",
 			md: "1.25rem",
 			lg: "2rem",
+		},
+		boxShadow: {
+			invoiceBase: "0px 10px 10px -10px rgba(72, 84, 159, 0.100397)",
+			lightShadow: "0px 10px 20px rgba(72, 84, 159, 0.25)",
+			darkShadow: "0px 10px 20px rgba(0, 0, 0, 0.25)",
 		},
 	},
 	plugins: [

@@ -26,7 +26,10 @@ const InvoiceLabelDropDown: InvoiceLabelDropdownComponent = ({
 	const id = new ShortUniqueId({ length: 5 })();
 	return (
 		<div className={`${className} flex w-full flex-col gap-[10px]`}>
-			<label className="text-grey-300 text-body-1" htmlFor={id}>
+			<label
+				className="text-grey-300 text-body-1 dark:text-grey-900"
+				htmlFor={id}
+			>
 				{children}
 			</label>
 			<InvoiceDropDown

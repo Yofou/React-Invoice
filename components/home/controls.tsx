@@ -53,10 +53,10 @@ const Controls: React.FC = () => {
 			className="mt-[34px] grid grid-cols-[max-content,1fr,max-content] grid-rows-[repeat(2,max-content)] gap-y-1 gap-x-5 sm:mt-[56px] sm:gap-y-2 sm:gap-x-10 md:mt-[72px]"
 			aria-label="invoice filter"
 		>
-			<h1 className="col-start-1 col-end-2 !text-[20px] text-white-full text-h1 sm:!text-[2rem]">
+			<h1 className="col-start-1 col-end-2 !text-[20px] text-white-full text-h1 dark:text-black-600 sm:!text-[2rem]">
 				Invoices
 			</h1>
-			<p className="col-start-1 col-end-2 text-grey-300 text-body-2">
+			<p className="col-start-1 col-end-2 text-grey-300 text-body-2 dark:text-grey-600">
 				{totalInvoices}
 			</p>
 			<FilterButton isMobile={isMobile}>

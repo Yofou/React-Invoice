@@ -8,7 +8,7 @@ html,
 body,
 #__next {
 	background: "";
-	@apply h-auto w-full bg-white-300 dark:bg-black-300;
+	@apply h-auto w-full bg-black-300 transition-colors dark:bg-white-300;
 }
 
 * {

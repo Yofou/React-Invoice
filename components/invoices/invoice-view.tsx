@@ -20,20 +20,20 @@ const InvoiceView: React.FC = () => {
 	);
 
 	return (
-		<section className="grid w-full grid-cols-[minmax(0,max-content),1fr] grid-rows-[repeat(7,max-content)] gap-x-10 rounded-[8px] bg-grey-1500 p-8 sm:grid-cols-[repeat(2,minmax(0,max-content)),1fr] sm:grid-rows-[repeat(5,max-content)] sm:gap-x-[100px] md:p-12">
+		<section className="grid w-full grid-cols-[minmax(0,max-content),1fr] grid-rows-[repeat(7,max-content)] gap-x-10 rounded-[8px] bg-grey-1500 p-8 transition-colors dark:bg-white-full dark:shadow-invoiceBase sm:grid-cols-[repeat(2,minmax(0,max-content)),1fr] sm:grid-rows-[repeat(5,max-content)] sm:gap-x-[100px] md:p-12">
 			<h1 className="hidden">invoice of #{invoice.id}</h1>
 
 			<div className="col-start-1 col-end-[-1] row-start-1 row-end-2 mb-[30px] flex flex-col sm:col-end-2 sm:mb-0 sm:gap-2">
-				<h1 className="uppercase text-white-full text-h4 md:text-h3">
+				<h1 className="uppercase text-white-full text-h4 dark:text-black-600 md:text-h3">
 					<span className="text-grey-600">#</span>
 					{invoice.id}
 				</h1>
-				<p className="text-grey-300 text-body-1">
+				<p className="text-grey-300 text-body-1 dark:text-grey-900">
 					{invoice.projectDescription}
 				</p>
 			</div>
 
-			<address className="col-start-1 col-end-[-1] mb-[30px] not-italic text-grey-300 text-body-2 sm:col-start-3 sm:col-end-4 sm:mb-5 sm:self-end sm:text-right">
+			<address className="col-start-1 col-end-[-1] mb-[30px] not-italic text-grey-300 text-body-2 dark:text-grey-900 sm:col-start-3 sm:col-end-4 sm:mb-5 sm:self-end sm:text-right">
 				{invoice.billFrom.address}
 				<br />
 				{invoice.billFrom.city}
@@ -57,7 +57,7 @@ const InvoiceView: React.FC = () => {
 				{paymentDue}
 			</InvoiceViewItem>
 
-			<address className="mt-2 not-italic text-grey-300 text-body-2">
+			<address className="mt-2 not-italic text-grey-300 text-body-2 dark:text-grey-900">
 				{invoice.billTo.address}
 				<br />
 				{invoice.billTo.city}

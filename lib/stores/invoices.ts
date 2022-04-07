@@ -45,4 +45,5 @@ export const invoices = createSlice({
 	},
 });
 
-export const { deleteByID, markAsPaid, addOrUpdateInvoice, replace } = invoices.actions;
+export const { deleteByID, markAsPaid, addOrUpdateInvoice, replace } =
+	invoices.actions;

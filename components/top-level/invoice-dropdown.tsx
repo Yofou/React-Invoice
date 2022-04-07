@@ -38,7 +38,7 @@ const InvoiceDropDown: InvoiceDropDownComponent = ({
 				id={id}
 				type="button"
 				onClick={onDropdownClick}
-				className="flex w-full items-center justify-between rounded-[4px] border border-grey-1200 bg-grey-1500 py-4 px-5 text-white-full text-h4"
+				className="flex w-full items-center justify-between rounded-[4px] border border-grey-1200 bg-grey-1500 py-4 px-5 text-white-full text-h4 dark:border-grey-300 dark:bg-white-full dark:text-black-600"
 			>
 				{optionDisplay(selected)}
 				<Image
@@ -56,7 +56,7 @@ const InvoiceDropDown: InvoiceDropDownComponent = ({
 			<AnimatePresence>
 				{isOpen && (
 					<motion.div
-						className="absolute top-[calc(100%+8px)] left-0 z-20 flex w-full flex-col rounded-[8px] bg-grey-1200"
+						className="absolute top-[calc(100%+8px)] left-0 z-20 flex w-full flex-col rounded-[8px] bg-grey-1200 shadow-darkShadow dark:bg-white-full dark:shadow-lightShadow"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
@@ -70,7 +70,7 @@ const InvoiceDropDown: InvoiceDropDownComponent = ({
 						{options.map((option, index) => (
 							<button
 								type="button"
-								className="border-b border-grey-1500 px-6 py-4 text-left text-grey-300 text-h4 last-of-type:border-b-0 hover:text-purple-600"
+								className="border-b border-grey-1500 px-6 py-4 text-left text-grey-300 text-h4 last-of-type:border-b-0 hover:text-purple-600 dark:border-grey-300 dark:text-black-600 dark:hover:text-purple-600"
 								onClick={onSelected(option)}
 								key={index}
 							>

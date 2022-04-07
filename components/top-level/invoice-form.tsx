@@ -12,7 +12,7 @@ import InvoiceLabelDropDown from "./invoice-label-dropdown";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { DateTime } from "luxon";
 import { yupResolver } from "@hookform/resolvers/yup";
-import ShortUniqueId from "short-unique-id";
+import createInvoiceID from "@lib/createInvoiceID";
 
 type InvocieFormProps = React.PropsWithChildren<{
 	onFormSubmit: SubmitHandler<Invoice>;
@@ -38,7 +38,7 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 		} = useForm<Invoice>({
 			resolver: yupResolver(resolver),
 			defaultValues: {
-				id: invoice?.id ?? new ShortUniqueId({ length: 6 })(),
+				id: invoice?.id ?? createInvoiceID(),
 				invoiceDate: invoice?.invoiceDate ?? DateTime.now().toMillis(),
 				paymentTerms: invoice?.paymentTerms ?? termOptions[0],
 				items: [{ name: "", qty: 1, price: 0 }],
@@ -79,7 +79,7 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 			<form
 				ref={formRef}
 				onSubmit={onSubmit}
-				className="-z-10 grid grid-rows-[repeat(2,max-content)] py-[30px] pr-[10px] scrollbar scrollbar-thumb-grey-1200 scrollbar-track-black-300 md:overflow-y-scroll"
+				className="-z-10 grid grid-rows-[repeat(2,max-content)] py-[30px] pr-[10px] scrollbar scrollbar-thumb-grey-1200 scrollbar-track-black-300 dark:scrollbar-thumb-grey-300 dark:scrollbar-track-white-full md:overflow-y-scroll"
 			>
 				<fieldset className="grid grid-flow-row grid-cols-2 gap-6 md:grid-cols-3">
 					<h2 className="w-full text-purple-600 text-h4">Bill from</h2>
@@ -87,14 +87,12 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 						className="col-start-1 col-end-[-1]"
 						register={register("billFrom.address")}
 						getFieldState={getFieldState}
-						errors={errors}
 						defaultValue={invoice?.billFrom?.address}
 					>
 						Street Address
 					</InvoiceLabelInput>
 					<InvoiceLabelInput
 						register={register("billFrom.city")}
-						errors={errors}
 						getFieldState={getFieldState}
 						defaultValue={invoice?.billFrom?.city}
 					>
@@ -102,7 +100,6 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					</InvoiceLabelInput>
 					<InvoiceLabelInput
 						register={register("billFrom.postCode")}
-						errors={errors}
 						getFieldState={getFieldState}
 						defaultValue={invoice?.billFrom?.postCode}
 					>
@@ -111,7 +108,6 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					<InvoiceLabelInput
 						className="col-start-1 col-end-[-1] md:col-auto"
 						register={register("billFrom.country")}
-						errors={errors}
 						getFieldState={getFieldState}
 						defaultValue={invoice?.billFrom?.country}
 					>
@@ -124,7 +120,6 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					<InvoiceLabelInput
 						className="col-start-1 col-end-[-1]"
 						register={register("billTo.name")}
-						errors={errors}
 						getFieldState={getFieldState}
 						defaultValue={invoice?.billTo.name}
 					>
@@ -133,7 +128,6 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					<InvoiceLabelInput
 						className="col-start-1 col-end-[-1]"
 						register={register("billTo.email")}
-						errors={errors}
 						getFieldState={getFieldState}
 						defaultValue={invoice?.billTo.email}
 					>
@@ -142,7 +136,6 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					<InvoiceLabelInput
 						className="col-start-1 col-end-[-1]"
 						register={register("billTo.address")}
-						errors={errors}
 						getFieldState={getFieldState}
 						defaultValue={invoice?.billTo.address}
 					>
@@ -150,7 +143,6 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					</InvoiceLabelInput>
 					<InvoiceLabelInput
 						register={register("billTo.city")}
-						errors={errors}
 						defaultValue={invoice?.billTo.city}
 						getFieldState={getFieldState}
 					>
@@ -158,7 +150,6 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					</InvoiceLabelInput>
 					<InvoiceLabelInput
 						register={register("billTo.postCode")}
-						errors={errors}
 						defaultValue={invoice?.billTo.postCode}
 						getFieldState={getFieldState}
 					>
@@ -166,7 +157,6 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					</InvoiceLabelInput>
 					<InvoiceLabelInput
 						className="col-start-1 col-end-[-1] md:col-auto"
-						errors={errors}
 						register={register("billTo.country")}
 						defaultValue={invoice?.billTo.country}
 						getFieldState={getFieldState}
@@ -195,7 +185,6 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					<InvoiceLabelInput
 						className="col-start-1 col-end-[-1]"
 						register={register("projectDescription")}
-						errors={errors}
 						defaultValue={invoice?.projectDescription}
 						getFieldState={getFieldState}
 					>
@@ -216,7 +205,7 @@ const InvoiceForm = forwardRef<HTMLFormElement, InvocieFormProps>(
 					/>
 					<Button
 						onClick={onAddItem}
-						className="mt-12 w-full bg-grey-1200 text-grey-300 text-h4 md:mt-4"
+						className="mt-12 w-full bg-grey-1200 text-grey-300 text-h4 dark:bg-white-300 dark:text-grey-900 md:mt-4"
 					>
 						+ Add New Item
 					</Button>

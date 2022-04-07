@@ -1,6 +1,8 @@
+import NewInvoice from "@components/home/new-invoice";
 import Button from "@components/top-level/button";
 import { AppDispatch } from "@lib/stores";
 import { deleteByID, markAsPaid } from "@lib/stores/invoices";
+import { PaymentStatus } from "@lib/stores/invoices-types";
 import { useRouter } from "next/router";
 import { InvoiceContext } from "pages/invoices/[id]";
 import { useContext, useState } from "react";
@@ -30,16 +32,28 @@ const InvoiceBottomBar: React.FC = () => {
 	if (!invoice) return <></>;
 	return (
 		<nav
-			className="-ml-10 flex w-screen justify-center gap-2 bg-grey-1500 px-6 py-[21px] sm:hidden"
+			className="-ml-10 flex w-screen justify-center gap-2 bg-grey-1500 px-6 py-[21px] dark:bg-white-full dark:shadow-invoiceBase sm:hidden"
 			aria-label="invoice bottom bar controls"
 		>
 			<Button
 				onClick={onEditInvoiceClick}
-				className="bg-grey-1200 text-grey-300 text-h4"
+				className="bg-grey-1200 text-grey-300 text-h4 dark:bg-white-300 dark:text-grey-900"
 			>
 				Edit
 			</Button>
-			<EditInvoice isOpen={isEditInvoiceOpen} onCancel={onEditInvoiceCancel} />
+			<EditInvoice
+				isOpen={
+					invoice.paymentStatus !== PaymentStatus.Draft && isEditInvoiceOpen
+				}
+				onCancel={onEditInvoiceCancel}
+			/>
+			<NewInvoice
+				isOpen={
+					invoice.paymentStatus === PaymentStatus.Draft && isEditInvoiceOpen
+				}
+				invoice={invoice}
+				onCancel={onEditInvoiceCancel}
+			/>
 			<Button
 				onClick={() => setIsDeleteModelOpen(true)}
 				className="bg-red-600 text-white-full text-h4"

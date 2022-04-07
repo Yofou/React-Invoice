@@ -6,8 +6,8 @@ const InvoiceViewItem: React.FC<InvoiceViewItemProps> = ({
 }) => {
 	return (
 		<div className={`flex flex-col gap-3 ${className}`}>
-			<h2 className="text-grey-300 text-body-1">{title}</h2>
-			<p className="text-[15px] font-bold leading-[20px] tracking-[-0.31px] text-white-full">
+			<h2 className="text-grey-300 text-body-1 dark:text-grey-900">{title}</h2>
+			<p className="text-[15px] font-bold leading-[20px] tracking-[-0.31px] text-white-full dark:text-black-600">
 				{children}
 			</p>
 		</div>

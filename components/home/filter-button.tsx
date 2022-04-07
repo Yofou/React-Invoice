@@ -18,7 +18,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({ children, isMobile }) => {
 		>
 			<button
 				onClick={() => setIsOpen(!isOpen)}
-				className="flex items-center gap-4 text-left text-white-full text-h4"
+				className="flex items-center gap-4 text-left text-white-full text-h4 dark:text-black-600"
 			>
 				{isMobile ? "Filter" : "Filter by status"}
 				<Image
@@ -36,7 +36,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({ children, isMobile }) => {
 			<AnimatePresence>
 				{isOpen && (
 					<motion.div
-						className="absolute top-[calc(100%+23px)] left-1/2 z-10 flex w-full min-w-[193px] flex-col gap-4 rounded-[8px] bg-grey-1200 p-6"
+						className="absolute top-[calc(100%+23px)] left-1/2 z-10 flex w-full min-w-[193px] flex-col gap-4 rounded-[8px] bg-grey-1200 p-6 shadow-darkShadow dark:bg-white-full dark:shadow-lightShadow"
 						initial={{ opacity: 0, translateX: "-50%" }}
 						animate={{ opacity: 1, translateX: "-50%" }}
 						exit={{ opacity: 0, translateX: "-50%" }}

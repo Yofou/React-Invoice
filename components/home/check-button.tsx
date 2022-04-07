@@ -23,7 +23,7 @@ const CheckButton: React.FC<CheckButtonProps> = ({
 		<button onClick={onClick} className="flex items-center gap-[13px]">
 			<div
 				className={`relative grid h-4 w-4 place-content-center rounded-[2px] border border-purple-600 ${
-					isActive ? "bg-purple-600" : "bg-grey-1500"
+					isActive ? "bg-purple-600" : "bg-grey-1500 dark:bg-grey-300"
 				}`}
 			>
 				{isActive && (
@@ -37,7 +37,9 @@ const CheckButton: React.FC<CheckButtonProps> = ({
 					/>
 				)}
 			</div>
-			<p className="capitalize text-white-full text-h4">{children}</p>
+			<p className="capitalize text-white-full text-h4 dark:text-black-600">
+				{children}
+			</p>
 		</button>
 	);
 };

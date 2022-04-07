@@ -1,8 +1,10 @@
 import { DateTime } from "luxon";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import { AnimatePresence, motion, Variants } from "framer-motion";
+import { InvoiceContext } from "pages/invoices/[id]";
+import { PaymentStatus } from "@lib/stores/invoices-types";
 
 type InvoiceCalenderProps = {
 	id?: string;
@@ -14,6 +16,7 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({
 	selected,
 	setSelected,
 }) => {
+	const invoice = useContext(InvoiceContext);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [view, setView] = useState(DateTime.now());
 	const [isOpen, setIsOpen] = useState(false);
@@ -85,9 +88,10 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({
 		<div ref={ref} className="relative">
 			<button
 				onClick={onCalenderClick}
-				className="flex w-full justify-between rounded-[4px] border border-grey-1200 bg-grey-1500 px-5 py-4 text-white-full text-h4"
+				className="flex w-full justify-between rounded-[4px] border border-grey-1200 bg-grey-1500 px-5 py-4 text-white-full text-h4 disabled:opacity-40 dark:border-grey-300 dark:bg-white-full dark:text-black-600 dark:disabled:opacity-40"
 				id={id}
 				type="button"
+				disabled={invoice?.paymentStatus !== PaymentStatus.Draft}
 			>
 				{DateTime.fromMillis(selected).toFormat("d LLL yyyy")}
 				<Image
@@ -103,7 +107,7 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({
 				{isOpen && (
 					<div
 						ref={containerRef}
-						className="absolute top-[calc(100%+8px)] left-0 z-40 grid w-full grid-cols-7 grid-rows-[repeat(6,15px)] items-center gap-y-4 gap-x-[14px] overflow-hidden rounded-[8px] bg-grey-1200 px-[18px] pb-8 pt-6"
+						className="absolute top-[calc(100%+8px)] left-0 z-40 grid w-full grid-cols-7 grid-rows-[repeat(6,15px)] items-center gap-y-4 gap-x-[14px] overflow-hidden rounded-[8px] bg-grey-1200 px-[18px] pb-8 pt-6 shadow-darkShadow dark:bg-white-full dark:shadow-lightShadow"
 					>
 						<button
 							type="button"
@@ -118,7 +122,7 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({
 								height="10px"
 							/>
 						</button>
-						<h1 className="col-start-2 col-end-7 row-start-1 row-end-2 text-center text-white-full text-h4">
+						<h1 className="col-start-2 col-end-7 row-start-1 row-end-2 text-center text-white-full text-h4 dark:text-black-600">
 							{view.toFormat("LLL yyyy")}
 						</h1>
 						<button
@@ -140,7 +144,7 @@ const InvoiceCalender: React.FC<InvoiceCalenderProps> = ({
 								<motion.button
 									type="button"
 									onClick={onDatePick(index + 1)}
-									className="text-center text-white-full text-h4 hover:text-purple-600"
+									className="text-center text-white-full text-h4 hover:text-purple-600 dark:text-black-600"
 									key={getKey(index)}
 									custom={index}
 									variants={animationButtonVarient}

@@ -23,20 +23,20 @@ const InvoiceItem: React.FC<InvoiceItemProps> = ({ invoice }) => {
 	return (
 		<motion.li
 			layout
-			className="rounded-[8px] bg-grey-1500 text-white-full text-body-1"
+			className="rounded-[8px] bg-grey-1500 text-white-full outline-purple-600 transition-colors text-body-1 hover:outline hover:outline-1 dark:bg-white-full dark:shadow-invoiceBase"
 			exit={{ opacity: 0 }}
 		>
 			<Link href={`/invoices/${invoice.id}`}>
 				<a className="grid w-full grid-cols-[max-content,1fr] grid-rows-[repeat(3,max-content)] items-center p-6 sm:grid-cols-[repeat(3,minmax(0,max-content)),1fr,repeat(2,minmax(0,max-content))] sm:grid-rows-1 sm:gap-[34px] sm:py-4 sm:pl-8 sm:pr-6">
-					<h1 className="font-bold">
+					<h1 className="font-bold dark:text-black-600">
 						<span className="text-grey-600">#</span>
 						{invoice.id}
 					</h1>
-					<p className="mt-6 sm:mt-0">Due {readableDate}</p>
-					<p className="col-start-2 col-end-3 row-start-1 row-end-2 justify-self-end sm:col-auto sm:row-auto sm:justify-self-start">
+					<p className="mt-6 dark:text-grey-900 sm:mt-0">Due {readableDate}</p>
+					<p className="col-start-2 col-end-3 row-start-1 row-end-2 justify-self-end dark:text-grey-900 sm:col-auto sm:row-auto sm:justify-self-start">
 						{invoice.billTo.name}
 					</p>
-					<p className="self-end text-h3 sm:justify-self-end">
+					<p className="self-end text-h3 dark:text-black-600 sm:justify-self-end">
 						{readableTotal}
 					</p>
 					<InvoiceStatus

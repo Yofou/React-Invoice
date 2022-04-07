@@ -34,22 +34,22 @@ const InvoiceControls: React.FC = () => {
 	if (!invoice) return <></>;
 	return (
 		<nav
-			className="grid w-full grid-cols-[max-content,1fr,repeat(3,max-content)] grid-rows-1 gap-2 rounded-[8px] bg-grey-1500 px-8 py-5"
+			className="grid w-full grid-cols-[max-content,1fr,repeat(3,max-content)] grid-rows-1 gap-2 rounded-[8px] bg-grey-1500 px-8 py-5 transition-colors dark:bg-white-full dark:shadow-invoiceBase"
 			aria-label="invoie controls"
 		>
-			<h1 className="col-start-1 col-end-[-1] flex items-center justify-between gap-4 text-white-full text-body-1 sm:col-auto sm:justify-start">
+			<h1 className="col-start-1 col-end-[-1] flex items-center justify-between gap-4 text-white-full text-body-1 dark:text-grey-900 sm:col-auto sm:justify-start">
 				Status <InvoiceStatus status={invoice.paymentStatus} />
 			</h1>
 
 			<Button
 				onClick={onEditInvoiceClick}
-				className="hidden justify-self-end bg-grey-1200 text-grey-300 text-h4 sm:inline-block"
+				className="hidden justify-self-end bg-grey-1200 text-grey-300 transition-colors text-h4 dark:bg-white-300 dark:text-grey-900 sm:inline-block"
 			>
 				Edit
 			</Button>
 			<EditInvoice
 				isOpen={
-					invoice.paymentStatus === PaymentStatus.Pending && isEditInvoiceOpen
+					invoice.paymentStatus !== PaymentStatus.Draft && isEditInvoiceOpen
 				}
 				onCancel={onEditInvoiceCancel}
 			/>
@@ -73,7 +73,7 @@ const InvoiceControls: React.FC = () => {
 			/>
 			<Button
 				onClick={onMarkAsPaid}
-				className="hidden bg-purple-600 text-white-full text-h4 disabled:opacity-20 sm:inline-block"
+				className="hidden bg-purple-600 text-white-full text-h4 disabled:opacity-20 dark:disabled:opacity-40 sm:inline-block"
 				disabled={invoice.paymentStatus !== PaymentStatus.Pending}
 			>
 				Mark as Paid

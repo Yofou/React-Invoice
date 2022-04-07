@@ -30,14 +30,22 @@ const InvoiceItemList: React.FC<InvoiceItemListProps> = ({
 
 	return (
 		<div className="grid grid-flow-row-dense grid-cols-[64px,100px,56px,1fr] items-center gap-4 md:grid-flow-row md:grid-cols-[1fr,46px,100px,repeat(2,max-content)]">
-			<p className="hidden text-grey-300 text-body-1 md:block">Item Name</p>
-			<p className="hidden text-grey-300 text-body-1 md:block">Qty.</p>
-			<p className="hidden text-grey-300 text-body-1 md:block">Price</p>
-			<p className="hidden text-grey-300 text-body-1 md:block">Total</p>
+			<p className="hidden text-grey-300 text-body-1 dark:text-grey-900 md:block">
+				Item Name
+			</p>
+			<p className="hidden text-grey-300 text-body-1 dark:text-grey-900 md:block">
+				Qty.
+			</p>
+			<p className="hidden text-grey-300 text-body-1 dark:text-grey-900 md:block">
+				Price
+			</p>
+			<p className="hidden text-grey-300 text-body-1 dark:text-grey-900 md:block">
+				Total
+			</p>
 
 			{items.map((item, index) => (
 				<Fragment key={item.id}>
-					<h2 className="col-start-1 col-end-[-1] mt-8 text-grey-300 text-body-1 first-of-type:mt-0 md:mt-0 md:hidden">
+					<h2 className="col-start-1 col-end-[-1] mt-8 text-grey-300 text-body-1 first-of-type:mt-0 dark:text-grey-900 md:mt-0 md:hidden">
 						Item Name
 					</h2>
 					<InvoiceInput
@@ -46,7 +54,7 @@ const InvoiceItemList: React.FC<InvoiceItemListProps> = ({
 						defaultValue={item.name}
 						className="col-start-1 col-end-[-1] md:col-end-2"
 					/>
-					<p className="col-start-1 col-end-2 text-grey-300 text-body-1 md:hidden">
+					<p className="col-start-1 col-end-2 text-grey-300 text-body-1 dark:text-grey-900 md:hidden">
 						Qty.
 					</p>
 					<InvoiceInput
@@ -58,7 +66,7 @@ const InvoiceItemList: React.FC<InvoiceItemListProps> = ({
 						defaultValue={item.qty}
 						className="col-start-1 col-end-2 !px-2 text-center md:col-start-2 md:col-end-3"
 					/>
-					<p className="col-start-2 col-end-3 text-grey-300 text-body-1 md:hidden">
+					<p className="col-start-2 col-end-3 text-grey-300 text-body-1 dark:text-grey-900 md:hidden">
 						Price.
 					</p>
 					<InvoiceInput
@@ -70,10 +78,10 @@ const InvoiceItemList: React.FC<InvoiceItemListProps> = ({
 						defaultValue={item.price}
 						className="col-start-2 col-end-3 md:col-start-3 md:col-end-4"
 					/>
-					<p className="col-start-3 col-end-[-1] text-grey-300 text-body-1 md:hidden">
+					<p className="col-start-3 col-end-[-1] text-grey-300 text-body-1 dark:text-grey-900 md:hidden">
 						Total.
 					</p>
-					<p className="col-start-3 col-end-4 text-grey-300 text-body-1 md:col-auto">
+					<p className="col-start-3 col-end-4 text-grey-300 text-body-1 dark:text-grey-900 md:col-auto">
 						{priceFormater.format(
 							itemsWatch[index].qty * itemsWatch[index].price
 						)}

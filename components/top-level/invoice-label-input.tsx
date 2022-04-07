@@ -15,7 +15,6 @@ type InvoiceLabelInputProps<T> = React.PropsWithChildren<{
 	onValueChange?: (value: T) => void;
 	register?: ReturnType<UseFormRegister<FieldValues>>;
 	defaultValue?: T;
-	errors?: any;
 	getFieldState?: UseFormGetFieldState<Invoice>;
 }>;
 
@@ -30,7 +29,6 @@ const InvoiceLabelInput: InvoiceLabelInputComponent = ({
 	onValueChange,
 	register,
 	defaultValue,
-	errors,
 	getFieldState,
 }) => {
 	const id = new ShortUniqueId({ length: 5 })();
@@ -42,7 +40,9 @@ const InvoiceLabelInput: InvoiceLabelInputComponent = ({
 			className={`${className} grid w-full grid-flow-row grid-cols-[1fr,max-content] gap-[10px]`}
 		>
 			<label
-				className={`text-body-1 ${isError ? "text-red-600" : "text-grey-300"}`}
+				className={`text-body-1 ${
+					isError ? "text-red-600" : "text-grey-300 dark:text-grey-900"
+				}`}
 				htmlFor={id}
 			>
 				{children}

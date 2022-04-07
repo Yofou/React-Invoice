@@ -26,7 +26,7 @@ const InvoicePage: NextPage = () => {
 		<InvoiceContext.Provider value={invoice}>
 			<Layout className="grid grid-cols-[minmax(0,730px)] grid-rows-[repeat(3,max-content),1fr] justify-center gap-y-6 p-10 py-16 pb-0 sm:grid-rows-[repeat(3,max-content)] sm:pb-16">
 				<Link href="/">
-					<a className="flex items-center gap-[23px] justify-self-start text-white-full text-h4">
+					<a className="flex items-center gap-[23px] justify-self-start text-white-full text-h4 dark:text-black-600">
 						<Image
 							src="/icon-arrow-left.svg"
 							alt="<"

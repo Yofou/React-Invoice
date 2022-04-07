@@ -10,7 +10,7 @@ const InvoiceViewAmount: React.FC<InvoiceViewAmountProps> = ({
 
 	return (
 		<div
-			className={`flex w-full items-center justify-between rounded-b-[8px] bg-black-600 p-6 sm:p-8 ${
+			className={`flex w-full items-center justify-between rounded-b-[8px] bg-black-600 p-6 transition-colors dark:bg-[#373B53] sm:p-8 ${
 				className ?? ""
 			}`}
 		>
